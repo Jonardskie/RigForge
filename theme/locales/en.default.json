@@ -1,0 +1,38 @@
+{
+  "general": {
+    "brand_name": "RIGFORGE",
+    "tagline": "PRECISION HARDWARE / BALANCED PERFORMANCE",
+    "open_builder": "BUILD YOUR RIG",
+    "view_product": "VIEW PRODUCT",
+    "explore_components": "EXPLORE COMPONENTS",
+    "start_building": "START BUILDING",
+    "add_to_cart": "ADD TO CART",
+    "sold_out": "SOLD OUT",
+    "cart": "CART",
+    "checkout": "CHECKOUT",
+    "continue_shopping": "CONTINUE SHOPPING",
+    "empty_cart": "Your cart is currently empty."
+  },
+  "builder": {
+    "kicker": "RIGFORGE / CONFIGURATOR",
+    "title": "Build your rig.",
+    "checks_passed": "CHECKS PASSED",
+    "estimated_draw": "EST. DRAW",
+    "psu_requirement": "PSU REQ.",
+    "add_bundle_to_cart": "ADD COMPLETE BUILD",
+    "next_step": "NEXT",
+    "back": "BACK",
+    "select_component": "SELECT YOUR"
+  },
+  "products": {
+    "specs": "SPECIFICATIONS",
+    "power_draw": "ESTIMATED POWER DRAW",
+    "compatibility": "COMPATIBILITY GUARDRAIL",
+    "quantity": "QUANTITY"
+  },
+  "gift_cards": {
+    "issued": {
+      "title": "Here's your {{ value }} gift card for {{ shop }}!"
+    }
+  }
+}

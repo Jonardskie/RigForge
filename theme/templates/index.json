@@ -1,0 +1,49 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-machine",
+      "settings": {
+        "eyebrow": "EST. 2024 / HARDWARE ENGINEERING",
+        "title_line1": "Build without",
+        "title_line2": "the guesswork.",
+        "description": "Enthusiast hardware engineered into balanced performance systems. Every component considered. Every constraint visible.",
+        "btn_primary_text": "BUILD YOUR RIG",
+        "btn_secondary_text": "EXPLORE COMPONENTS",
+        "spec_gpu": "RTX CLASS",
+        "spec_ram": "64GB DDR5",
+        "spec_profile": "CREATOR / AI / ESPORTS",
+        "spec_power": "850W ATX 3.1"
+      }
+    },
+    "profiles": {
+      "type": "performance-profiles",
+      "settings": {
+        "eyebrow": "01 / PERFORMANCE PROFILES",
+        "title_line1": "Choose your",
+        "title_line2": "workload.",
+        "description": "Select an engineered baseline profile. Every preset is pre-validated for socket balance, memory timings, thermals, and power envelope."
+      }
+    },
+    "featured": {
+      "type": "featured-components",
+      "settings": {
+        "eyebrow": "02 / CURATED HARDWARE",
+        "title_line1": "Selected",
+        "title_line2": "components.",
+        "products_to_show": 3
+      }
+    },
+    "workbench": {
+      "type": "performance-workbench",
+      "settings": {
+        "eyebrow": "03 / PERFORMANCE WORKBENCH",
+        "title_line1": "Know the",
+        "title_line2": "whole system.",
+        "description": "Thermals, clearance, power draw, BIOS support. The important details are not buried in a tab — they are part of the decision.",
+        "button_text": "OPEN WORKBENCH",
+        "balance_score": "92%"
+      }
+    }
+  },
+  "order": ["hero", "profiles", "featured", "workbench"]
+}

@@ -1,0 +1,23 @@
+{
+  "current": {
+    "color_bg": "#F8FAFC",
+    "color_panel": "#FFFFFF",
+    "color_text": "#0F172A",
+    "color_muted": "#64748B",
+    "color_accent": "#2563EB",
+    "color_line": "#E2E8F0",
+    "enable_builder_modal": true,
+    "builder_title": "Build your custom rig.",
+    "psu_safety_margin": 125,
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {}
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {}
+      }
+    }
+  }
+}

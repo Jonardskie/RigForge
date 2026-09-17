@@ -1,0 +1,101 @@
+<div class="cart-wrap">
+  <span class="eyebrow">ORDER MANIFEST / CART</span>
+  <h1 class="page-title">Your <em>Rig Manifest.</em></h1>
+
+  {%- if cart.item_count > 0 -%}
+    <form action="{{ routes.cart_url }}" method="post" id="cart">
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>COMPONENT</th>
+            <th>QUANTITY</th>
+            <th style="text-align: right;">TOTAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for item in cart.items -%}
+            <tr>
+              <td>
+                <span class="cart-item-title">{{ item.product.title }}</span>
+                {%- if item.variant.title != 'Default Title' -%}
+                  <span class="cart-item-meta">{{ item.variant.title }}</span>
+                {%- endif -%}
+
+                {%- if item.properties.size > 0 -%}
+                  <div style="margin-top: 8px;">
+                    {%- for property in item.properties -%}
+                      {%- assign first_character_in_key = property.first | truncate: 1, '' -%}
+                      {%- unless property.last == blank or first_character_in_key == '_' -%}
+                        <span class="product-specs" style="padding: 0;">
+                          <span>{{ property.first }}: {{ property.last }}</span>
+                        </span>
+                      {%- endunless -%}
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+              </td>
+              <td>
+                <input 
+                  type="number" 
+                  name="updates[]" 
+                  value="{{ item.quantity }}" 
+                  min="0" 
+                  style="width: 60px; background: #FFFFFF; border: 1.5px solid var(--line); color: var(--text-main); padding: 8px; border-radius: var(--radius-sm); font-weight: 600; text-align: center; box-shadow: var(--neu-sunken-sm);"
+                >
+              </td>
+              <td style="text-align: right;">
+                <strong style="color: var(--amber); font-size: 16px;">{{ item.final_line_price | money }}</strong>
+              </td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+
+      <div class="cart-summary">
+        <div>
+          <button type="submit" name="update" class="outline-button">
+            UPDATE MANIFEST
+          </button>
+        </div>
+        <div style="text-align: right;">
+          <span class="eyebrow">ESTIMATED TOTAL</span>
+          <div class="cart-total">{{ cart.total_price | money }}</div>
+          <p style="color: var(--text-muted); font-size: 12px; margin: 8px 0 20px;">
+            Taxes and shipping calculated at checkout.
+          </p>
+          <button type="submit" name="checkout" class="primary-button" style="height: 52px; padding: 0 32px; width: 100%;">
+            PROCEED TO CHECKOUT <span>↗</span>
+          </button>
+
+          <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px; align-items: flex-end;">
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end;">
+              <span style="font: 10px var(--font-mono); background: #FFFFFF; border: 1px solid var(--line); padding: 5px 10px; color: var(--text-muted); border-radius: var(--radius-sm); box-shadow: var(--neu-raised-sm);">VISA</span>
+              <span style="font: 10px var(--font-mono); background: #FFFFFF; border: 1px solid var(--line); padding: 5px 10px; color: var(--text-muted); border-radius: var(--radius-sm); box-shadow: var(--neu-raised-sm);">MASTERCARD</span>
+              <span style="font: 10px var(--font-mono); background: #FFFFFF; border: 1px solid var(--line); padding: 5px 10px; color: var(--text-muted); border-radius: var(--radius-sm); box-shadow: var(--neu-raised-sm);">SHOP PAY</span>
+              <span style="font: 10px var(--font-mono); background: #FFFFFF; border: 1px solid var(--line); padding: 5px 10px; color: var(--text-muted); border-radius: var(--radius-sm); box-shadow: var(--neu-raised-sm);">APPLE PAY</span>
+              <span style="font: 10px var(--font-mono); background: #FFFFFF; border: 1px solid var(--line); padding: 5px 10px; color: var(--text-muted); border-radius: var(--radius-sm); box-shadow: var(--neu-raised-sm);">AFFIRM 0% APR</span>
+            </div>
+            <span style="font: 11px var(--font-mono); color: var(--text-muted); display: flex; align-items: center; gap: 6px;">
+              <span style="color: var(--amber);">🔒</span> 256-BIT ENCRYPTED · 3-YEAR RIGFORGE WARRANTY
+            </span>
+          </div>
+        </div>
+      </div>
+    </form>
+  {%- else -%}
+    <div style="padding: 60px 24px; text-align: center; border: 1px solid var(--line); background: #FFFFFF; margin-top: 30px; border-radius: var(--radius-lg); box-shadow: var(--neu-raised);">
+      <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 25px;">Your manifest is currently empty. Configure a custom build or select enthusiast components.</p>
+      <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+        <button type="button" class="primary-button" data-open-builder>BUILD YOUR RIG <span>↗</span></button>
+        <a href="{{ routes.collections_url }}" class="outline-button">EXPLORE HARDWARE</a>
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Cart Page",
+  "settings": []
+}
+{% endschema %}

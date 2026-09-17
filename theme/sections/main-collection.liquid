@@ -1,0 +1,103 @@
+<div class="catalog-header">
+  <span class="eyebrow">CATALOG / ALL HARDWARE</span>
+  <h1 class="page-title">{{ collection.title | default: 'All Components' }}</h1>
+  <p>{{ collection.description | default: 'Browse our precision-tested components with verified power envelopes and thermal profiles.' }}</p>
+
+  <div class="filter-bar">
+    <a href="{{ routes.all_products_collection_url }}" class="filter-chip active">ALL HARDWARE</a>
+    <a href="{{ routes.collections_url }}/cpu" class="filter-chip">PROCESSORS (CPU)</a>
+    <a href="{{ routes.collections_url }}/gpu" class="filter-chip">GRAPHICS (GPU)</a>
+    <a href="{{ routes.collections_url }}/motherboards" class="filter-chip">MOTHERBOARDS</a>
+    <a href="{{ routes.collections_url }}/memory" class="filter-chip">DDR5 RAM</a>
+    <a href="{{ routes.collections_url }}/cooling" class="filter-chip">COOLING</a>
+    <a href="{{ routes.collections_url }}/cases" class="filter-chip">CHASSIS / CASES</a>
+    <a href="{{ routes.collections_url }}/power" class="filter-chip">POWER SUPPLIES</a>
+  </div>
+</div>
+
+<div class="section-wrap" style="padding-top: 40px;">
+  <div class="product-grid">
+    {%- if collection.products_count > 0 -%}
+      {%- for product in collection.products -%}
+        {%- capture tone -%}{%- cycle 'copper', 'silver', 'blue' -%}{%- endcapture -%}
+        {% render 'product-card', product: product, tone: tone %}
+      {%- endfor -%}
+    {%- else -%}
+      <article class="product-card">
+        <div class="product-art copper">
+          <span>GPU / GRAPHICS</span>
+          <div class="product-shape"></div>
+        </div>
+        <div class="product-info">
+          <div>
+            <span class="eyebrow">GPU / ENTHUSIAST</span>
+            <h3>RTX 5080 Founders Edition</h3>
+          </div>
+          <strong>$1,199.00</strong>
+        </div>
+        <div class="product-specs">
+          <span>16GB GDDR7</span>
+          <span>360W</span>
+          <span>304MM</span>
+        </div>
+        <div class="product-card-footer">
+          <a href="#">VIEW PRODUCT <span>↗</span></a>
+          <button type="button" class="text-button" data-open-builder style="color: var(--amber)">ADD TO RIG +</button>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-art silver">
+          <span>CPU / PROCESSOR</span>
+          <div class="product-shape"></div>
+        </div>
+        <div class="product-info">
+          <div>
+            <span class="eyebrow">CPU / ENTHUSIAST</span>
+            <h3>Ryzen 9 9950X</h3>
+          </div>
+          <strong>$649.00</strong>
+        </div>
+        <div class="product-specs">
+          <span>AM5</span>
+          <span>170W</span>
+          <span>16 CORE</span>
+        </div>
+        <div class="product-card-footer">
+          <a href="#">VIEW PRODUCT <span>↗</span></a>
+          <button type="button" class="text-button" data-open-builder style="color: var(--amber)">ADD TO RIG +</button>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-art blue">
+          <span>MEMORY / DDR5</span>
+          <div class="product-shape"></div>
+        </div>
+        <div class="product-info">
+          <div>
+            <span class="eyebrow">RAM / ENTHUSIAST</span>
+            <h3>64GB DDR5-6000 CL30</h3>
+          </div>
+          <strong>$209.00</strong>
+        </div>
+        <div class="product-specs">
+          <span>2 × 32GB</span>
+          <span>EXPO</span>
+          <span>DDR5</span>
+        </div>
+        <div class="product-card-footer">
+          <a href="#">VIEW PRODUCT <span>↗</span></a>
+          <button type="button" class="text-button" data-open-builder style="color: var(--amber)">ADD TO RIG +</button>
+        </div>
+      </article>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Grid",
+  "settings": []
+}
+{% endschema %}

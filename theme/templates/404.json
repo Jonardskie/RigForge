@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "hero-machine",
+      "settings": {
+        "eyebrow": "ERROR 404 / SYSTEM ANOMALY",
+        "title_line1": "Hardware",
+        "title_line2": "not found.",
+        "description": "The component or blueprint requested does not exist or has been moved to an archived inventory slot."
+      }
+    }
+  },
+  "order": ["main"]
+}

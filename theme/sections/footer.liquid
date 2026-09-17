@@ -1,0 +1,22 @@
+<footer class="site-footer">
+  <a class="brand" href="{{ routes.root_url }}">
+    {% render 'mark-icon' %}
+    RIG<span>FORGE</span>
+  </a>
+  <span>{{ section.settings.tagline | default: 'PRECISION HARDWARE / BALANCED PERFORMANCE' }}</span>
+  <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name | default: 'RIGFORGE' }}. ALL RIGHTS RESERVED.</span>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "PRECISION HARDWARE / BALANCED PERFORMANCE"
+    }
+  ]
+}
+{% endschema %}

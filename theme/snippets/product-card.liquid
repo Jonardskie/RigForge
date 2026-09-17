@@ -1,0 +1,37 @@
+{%- comment -%}
+  RigForge Product Card Snippet
+  Accepts:
+  - product: {Object} Shopify Product Object
+  - tone: {String} copper | silver | blue
+{%- endcomment -%}
+
+{%- assign card_tone = tone | default: 'copper' -%}
+
+<article class="product-card">
+  <div class="product-art {{ card_tone }}">
+    <span>{{ product.type | default: 'HARDWARE' | upcase }}</span>
+    <div class="product-shape"></div>
+  </div>
+  
+  <div class="product-info">
+    <div>
+      <span class="eyebrow">{{ product.type | default: 'SPEC' | upcase }} / FEATURED</span>
+      <h3>{{ product.title }}</h3>
+    </div>
+    <strong>{{ product.price | money }}</strong>
+  </div>
+
+  <div class="product-specs">
+    {%- for tag in product.tags limit: 3 -%}
+      <span>{{ tag }}</span>
+    {%- else -%}
+      <span>ENTHUSIAST GRADE</span>
+      <span>GEN 5</span>
+    {%- endfor -%}
+  </div>
+
+  <div class="product-card-footer">
+    <a href="{{ product.url }}">VIEW PRODUCT <span>↗</span></a>
+    <button type="button" class="text-button" data-open-builder style="color: var(--amber)">ADD TO RIG +</button>
+  </div>
+</article>

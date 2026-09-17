@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {}
+    },
+    "workbench": {
+      "type": "performance-workbench",
+      "settings": {
+        "eyebrow": "ENGINEERING / COMPATIBILITY",
+        "title_line1": "System",
+        "title_line2": "benchmarks."
+      }
+    }
+  },
+  "order": ["main", "workbench"]
+}

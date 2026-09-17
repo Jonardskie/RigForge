@@ -1,0 +1,88 @@
+<section class="workbench section-wrap" id="workbench">
+  <div class="workbench-copy">
+    <span class="eyebrow">{{ section.settings.eyebrow | default: '03 / PERFORMANCE WORKBENCH' }}</span>
+    <h2>
+      {{ section.settings.title_line1 | default: 'Know the' }}<br>
+      <em>{{ section.settings.title_line2 | default: 'whole system.' }}</em>
+    </h2>
+    <p>{{ section.settings.description | default: 'Thermals, clearance, power draw, BIOS support. The important details are not buried in a tab — they are part of the decision.' }}</p>
+    <button type="button" class="outline-button" data-open-builder>
+      {{ section.settings.button_text | default: 'OPEN WORKBENCH' }} <span>↗</span>
+    </button>
+  </div>
+
+  <div class="balance-card">
+    <div class="balance-top">
+      <span>SYSTEM BALANCE SCORE</span>
+      <strong>{{ section.settings.balance_score | default: '92%' }}</strong>
+    </div>
+    
+    <div class="balance-meter">
+      <b style="width: {{ section.settings.balance_score | default: '92%' }};"></b>
+    </div>
+
+    <div class="balance-items">
+      <span>✓ SOCKET COMPATIBLE</span>
+      <span>✓ DDR5 LATENCY TUNED</span>
+      <span>✓ GPU CLEARANCE OK</span>
+      <span>✓ COOLING SUFFICIENT</span>
+      <span class="warning">⚠ PSU HEADROOM TIGHT</span>
+      <span>✓ PCIE 5.0 LANES</span>
+    </div>
+
+    <div class="wattage">
+      <span>ESTIMATED SYSTEM DRAW</span>
+      <strong>605W</strong>
+      <small>RECOMMENDED PSU / 756W+</small>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Performance Workbench",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "03 / PERFORMANCE WORKBENCH"
+    },
+    {
+      "type": "text",
+      "id": "title_line1",
+      "label": "Heading Line 1",
+      "default": "Know the"
+    },
+    {
+      "type": "text",
+      "id": "title_line2",
+      "label": "Heading Line 2",
+      "default": "whole system."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Thermals, clearance, power draw, BIOS support. The important details are not buried in a tab — they are part of the decision."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Label",
+      "default": "OPEN WORKBENCH"
+    },
+    {
+      "type": "text",
+      "id": "balance_score",
+      "label": "Default Balance Score",
+      "default": "92%"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Performance Workbench"
+    }
+  ]
+}
+{% endschema %}

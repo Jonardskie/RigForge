@@ -1,0 +1,124 @@
+<section class="profile-section section-wrap" id="profiles">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">{{ section.settings.eyebrow | default: '01 / PERFORMANCE PROFILES' }}</span>
+      <h2>
+        {{ section.settings.title_line1 | default: 'Choose your' }}<br>
+        <em>{{ section.settings.title_line2 | default: 'workload.' }}</em>
+      </h2>
+    </div>
+    <p>{{ section.settings.description | default: 'Select an engineered baseline profile. Every preset is pre-validated for socket balance, memory timings, thermals, and power envelope.' }}</p>
+  </div>
+
+  <div class="profile-grid">
+    <!-- Preset 1: Creator -->
+    <div class="profile-card selected" data-preset-card="creator">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="profile-index">01 / CREATOR</span>
+        <strong style="font: 14px var(--font-mono); color: var(--amber);">$2,934</strong>
+      </div>
+      <h3>CREATOR STUDIO</h3>
+      
+      <div class="profile-lines">
+        <span>4K VIDEO RENDERING</span>
+        <span>AFTER EFFECTS & BLENDER</span>
+        <span>64GB DDR5 · 16 CORE RYZEN</span>
+      </div>
+
+      <div style="margin: 18px 0 14px; padding: 12px 14px; background: var(--bg-sunken); border-radius: var(--radius-sm); font: 11px var(--font-mono); color: var(--text-body); box-shadow: var(--neu-sunken-sm);">
+        <div style="color: var(--text-muted); font-size: 10px; margin-bottom: 4px;">ENGINEERED HARDWARE:</div>
+        <strong>Ryzen 9 9950X + RTX 5080 + 64GB DDR5</strong>
+      </div>
+
+      <div style="margin-top: auto; display: flex; gap: 10px;">
+        <button type="button" class="primary-button" data-load-preset="creator" style="width: 100%; min-height: 44px; font-size: 11px;">
+          LOAD THIS BUILD <span>↗</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Preset 2: AI Dev -->
+    <div class="profile-card" data-preset-card="ai">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="profile-index">02 / AI DEV</span>
+        <strong style="font: 14px var(--font-mono); color: var(--amber);">$3,084</strong>
+      </div>
+      <h3>AI & DEEP LEARNING</h3>
+      
+      <div class="profile-lines">
+        <span>LOCAL LLM INFERENCE (CUDA)</span>
+        <span>PYTORCH FINE-TUNING</span>
+        <span>16GB GDDR7 · 1000W ATX 3.0</span>
+      </div>
+
+      <div style="margin: 18px 0 14px; padding: 12px 14px; background: var(--bg-sunken); border-radius: var(--radius-sm); font: 11px var(--font-mono); color: var(--text-body); box-shadow: var(--neu-sunken-sm);">
+        <div style="color: var(--text-muted); font-size: 10px; margin-bottom: 4px;">ENGINEERED HARDWARE:</div>
+        <strong>Core i7-14700K + RTX 5080 + 1000W PSU</strong>
+      </div>
+
+      <div style="margin-top: auto; display: flex; gap: 10px;">
+        <button type="button" class="primary-button" data-load-preset="ai" style="width: 100%; min-height: 44px; font-size: 11px;">
+          LOAD THIS BUILD <span>↗</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Preset 3: Esports -->
+    <div class="profile-card" data-preset-card="esports">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="profile-index">03 / ESPORTS</span>
+        <strong style="font: 14px var(--font-mono); color: var(--amber);">$2,014</strong>
+      </div>
+      <h3>ESPORTS PRO</h3>
+      
+      <div class="profile-lines">
+        <span>1440P ULTRA HIGH FPS (240HZ+)</span>
+        <span>LOW LATENCY 3D V-CACHE</span>
+        <span>32GB DDR5 · RTX 5070 TI</span>
+      </div>
+
+      <div style="margin: 18px 0 14px; padding: 12px 14px; background: var(--bg-sunken); border-radius: var(--radius-sm); font: 11px var(--font-mono); color: var(--text-body); box-shadow: var(--neu-sunken-sm);">
+        <div style="color: var(--text-muted); font-size: 10px; margin-bottom: 4px;">ENGINEERED HARDWARE:</div>
+        <strong>Ryzen 7 7800X3D + RTX 5070 Ti OC</strong>
+      </div>
+
+      <div style="margin-top: auto; display: flex; gap: 10px;">
+        <button type="button" class="primary-button" data-load-preset="esports" style="width: 100%; min-height: 44px; font-size: 11px;">
+          LOAD THIS BUILD <span>↗</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Performance Profiles",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "01 / PERFORMANCE PROFILES"
+    },
+    {
+      "type": "text",
+      "id": "title_line1",
+      "label": "Heading Line 1",
+      "default": "Choose your"
+    },
+    {
+      "type": "text",
+      "id": "title_line2",
+      "label": "Heading Line 2",
+      "default": "workload."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Select an engineered baseline profile. Every preset is pre-validated for socket balance, memory timings, thermals, and power envelope."
+    }
+  ]
+}
+{% endschema %}

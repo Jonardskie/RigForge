@@ -1,0 +1,55 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    {% render 'meta-tags' %}
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    {{ content_for_header }}
+  </head>
+
+  <body>
+    <div class="site-shell">
+      {% section 'header' %}
+
+      <main id="MainContent" role="main">
+        {{ content_for_layout }}
+      </main>
+
+      {% section 'rig-builder' %}
+      {% render 'checkout-modal' %}
+      {% section 'footer' %}
+    </div>
+
+    <script>
+      window.ShopifyThemeAssets = {
+        "AMD Ryzen 9 9950X_no_bg.png": "{{ 'AMD Ryzen 9 9950X_no_bg.png' | asset_url }}",
+        "AMD Ryzen 7 7800X3D_no_bg.png": "{{ 'AMD Ryzen 7 7800X3D_no_bg.png' | asset_url }}",
+        "Intel Core i7-14700K_no_bg.png": "{{ 'Intel Core i7-14700K_no_bg.png' | asset_url }}",
+        "Gigabyte X670E AORUS Master_no_bg.png": "{{ 'Gigabyte X670E AORUS Master_no_bg.png' | asset_url }}",
+        "ASRock B650E Steel Legend_no_bg.png": "{{ 'ASRock B650E Steel Legend_no_bg.png' | asset_url }}",
+        "ASUS ROG Maximus Z790 Hero_no_bg.png": "{{ 'ASUS ROG Maximus Z790 Hero_no_bg.png' | asset_url }}",
+        "NVIDIA GeForce RTX 5080 Founders Edition_no_bg.png": "{{ 'NVIDIA GeForce RTX 5080 Founders Edition_no_bg.png' | asset_url }}",
+        "GeForce RTX 5070 Ti OC Edition_no_bg.png": "{{ 'GeForce RTX 5070 Ti OC Edition_no_bg.png' | asset_url }}",
+        "XFX Swift OC Radeon RX 9060 XT 16 GB Video Card_no_bg.png": "{{ 'XFX Swift OC Radeon RX 9060 XT 16 GB Video Card_no_bg.png' | asset_url }}",
+        "Corsair Vengeance RGB 64 GB (2 x 32 GB) DDR5-6000 CL30 Memory_no_bg.png": "{{ 'Corsair Vengeance RGB 64 GB (2 x 32 GB) DDR5-6000 CL30 Memory_no_bg.png' | asset_url }}",
+        "Kingston FURY Beast 32 GB (2 x 16 GB) DDR5-6000 CL30 Memory_no_bg.png": "{{ 'Kingston FURY Beast 32 GB (2 x 16 GB) DDR5-6000 CL30 Memory_no_bg.png' | asset_url }}",
+        "Arctic Liquid Freezer III 360_no_bg.png": "{{ 'Arctic Liquid Freezer III 360_no_bg.png' | asset_url }}",
+        "DeepCool AK620 Digital_no_bg.png": "{{ 'DeepCool AK620 Digital_no_bg.png' | asset_url }}",
+        "Fractal Design North XL Mesh_no_bg.png": "{{ 'Fractal Design North XL Mesh_no_bg.png' | asset_url }}",
+        "Lian Li O11 Vision_no_bg.png": "{{ 'Lian Li O11 Vision_no_bg.png' | asset_url }}",
+        "Lian Li Vector V100R ATX Mid Tower Case_no_bg.png": "{{ 'Lian Li Vector V100R ATX Mid Tower Case_no_bg.png' | asset_url }}",
+        "Corsair RM850x Shift_no_bg.png": "{{ 'Corsair RM850x Shift_no_bg.png' | asset_url }}",
+        "Seasonic Vertex GX-1000_no_bg.png": "{{ 'Seasonic Vertex GX-1000_no_bg.png' | asset_url }}"
+      };
+    </script>
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'rig-builder.js' | asset_url }}" defer="defer"></script>
+  </body>
+</html>

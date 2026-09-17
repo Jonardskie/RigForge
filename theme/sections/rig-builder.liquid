@@ -1,0 +1,95 @@
+<div 
+  id="rig-builder-modal" 
+  class="builder-backdrop" 
+  role="dialog" 
+  aria-modal="true" 
+  aria-labelledby="builder-title"
+  hidden
+>
+  <section class="builder-panel">
+    <header class="builder-header">
+      <div>
+        <span class="eyebrow">{{ section.settings.kicker | default: 'RIGFORGE / CONFIGURATOR' }}</span>
+        <h2 id="builder-title">{{ section.settings.title | default: 'Build your rig.' }}</h2>
+      </div>
+      <button class="icon-button" data-close-builder aria-label="Close builder">&times;</button>
+    </header>
+
+    <div class="builder-progress">
+      <span data-step-counter>01 / 07</span>
+      <div>
+        <b data-progress-bar style="width: 14.28%;"></b>
+      </div>
+      <span data-checks-passed>0 CHECKS PASSED</span>
+    </div>
+
+    <div class="builder-grid">
+      <!-- Step Navigation -->
+      <nav class="step-nav" data-step-nav aria-label="Build categories">
+        <!-- Injected via rig-builder.js -->
+      </nav>
+
+      <!-- Active Category Hardware Picker -->
+      <div class="part-list">
+        <div class="section-kicker" data-category-title>SELECT YOUR CPU</div>
+        <div class="part-options" data-part-options>
+          <!-- Options populated via rig-builder.js -->
+        </div>
+        <div class="guardrail" data-guardrail-text>
+          <span class="status-dot"></span>Hardware compatibility guardrails are active for this selection.
+        </div>
+      </div>
+
+      <!-- Build Summary & Health Sidebar -->
+      <aside class="build-summary">
+        <div class="section-kicker">YOUR SYSTEM BUILD</div>
+        <div data-summary-rows>
+          <!-- Summary rows rendered via rig-builder.js -->
+        </div>
+
+        <div class="summary-health">
+          <div class="health-head">
+            <span>BUILD HEALTH</span>
+            <strong data-health-count>0 / 7</strong>
+          </div>
+          <div class="health-bar">
+            <b data-health-bar style="width: 0%;"></b>
+          </div>
+          <p><span class="status-dot"></span> Real-time compatibility verification</p>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="builder-footer">
+      <button type="button" class="text-button" data-back-btn>&larr; BACK</button>
+      <div class="power-readout">
+        <span>EST. DRAW</span>
+        <strong data-draw-readout>530W</strong>
+        <small data-psu-req>PSU REQ. 663W+</small>
+      </div>
+      <button type="button" class="primary-button" data-next-btn>
+        NEXT: MOTHERBOARD <span>&rarr;</span>
+      </button>
+    </footer>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Rig Builder Modal",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Eyebrow Kicker",
+      "default": "RIGFORGE / CONFIGURATOR"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Builder Heading",
+      "default": "Build your rig."
+    }
+  ]
+}
+{% endschema %}

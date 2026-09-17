@@ -1,0 +1,72 @@
+<div class="product-detail-grid">
+  <div class="product-gallery">
+    <div class="product-art copper" style="width: 100%; height: 100%; min-height: 480px;">
+      <span>{{ product.type | default: 'HARDWARE' | upcase }}</span>
+      <div class="product-shape" style="width: 320px; height: 320px; right: -40px; bottom: -40px;"></div>
+    </div>
+  </div>
+
+  <div class="product-info-panel">
+    <span class="eyebrow">{{ product.type | default: 'ENTHUSIAST GRADE' | upcase }} / SPECIFICATION</span>
+    <h1>{{ product.title | default: 'RTX 5080 Founders Edition' }}</h1>
+    
+    <div class="product-price-large">
+      {{ product.selected_or_first_available_variant.price | default: 119900 | money }}
+    </div>
+
+    <p>{{ product.description | default: 'Built on next-generation architecture with ultra-fast GDDR7 memory. Precision-engineered vapor chamber cooling and rigid aluminum exoskeleton.' }}</p>
+
+    {% form 'product', product %}
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id | default: 1 }}">
+      
+      <div style="display: flex; gap: 15px; margin: 24px 0;">
+        <button type="submit" class="primary-button" style="flex: 1; height: 50px;">
+          ADD TO CART <span>↗</span>
+        </button>
+        <button type="button" class="outline-button" data-open-builder style="height: 50px;">
+          ADD TO RIG BUILDER
+        </button>
+      </div>
+    {% endform %}
+
+    <div class="guardrail">
+      <span class="status-dot"></span>
+      <strong>RigForge Compatibility Guarantee:</strong> This item is verified for standard ATX power envelopes and PCIe 5.0 clearance.
+    </div>
+
+    <div>
+      <span class="eyebrow" style="margin-bottom: 12px;">TECHNICAL SPECIFICATIONS</span>
+      <table class="spec-table">
+        <tbody>
+          <tr>
+            <td>THERMAL POWER DRAW (TDP)</td>
+            <td><strong>360W</strong></td>
+          </tr>
+          <tr>
+            <td>PHYSICAL LENGTH</td>
+            <td><strong>304mm (Triple Slot)</strong></td>
+          </tr>
+          <tr>
+            <td>MEMORY BUS / SPEED</td>
+            <td><strong>16GB GDDR7 · 28 Gbps</strong></td>
+          </tr>
+          <tr>
+            <td>POWER CONNECTOR</td>
+            <td><strong>1× 16-pin 12V-2x6 (ATX 3.1)</strong></td>
+          </tr>
+          <tr>
+            <td>RECOMMENDED PSU</td>
+            <td><strong>850W+ Gold Rated</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Details",
+  "settings": []
+}
+{% endschema %}

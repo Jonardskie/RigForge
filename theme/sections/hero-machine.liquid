@@ -1,0 +1,129 @@
+<section class="hero" id="top">
+  <div class="hero-copy">
+    <span class="eyebrow">{{ section.settings.eyebrow | default: 'EST. 2024 / HARDWARE ENGINEERING' }}</span>
+    <h1>
+      {{ section.settings.title_line1 | default: 'Build without' }}<br>
+      <em>{{ section.settings.title_line2 | default: 'the guesswork.' }}</em>
+    </h1>
+    <p>{{ section.settings.description | default: 'Enthusiast hardware engineered into balanced performance systems. Every component considered. Every constraint visible.' }}</p>
+    
+    <div class="hero-actions">
+      <button type="button" class="primary-button" data-open-builder>
+        {{ section.settings.btn_primary_text | default: 'BUILD YOUR RIG' }} <span>↗</span>
+      </button>
+      <a class="outline-button" href="{{ section.settings.btn_secondary_link | default: '#components' }}">
+        {{ section.settings.btn_secondary_text | default: 'EXPLORE COMPONENTS' }}
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-machine">
+    <div class="machine-grid"></div>
+    <div class="machine-ring ring-one"></div>
+    <div class="machine-ring ring-two"></div>
+    <div class="machine-core">
+      <img src="{{ 'Fractal Design North XL Mesh_no_bg.png' | asset_url }}" alt="RigForge Flagship Chassis" class="hero-hero-img" width="300" height="300" loading="lazy" style="width: 100%; height: 100%; object-fit: contain; padding: 4px;">
+    </div>
+    <div class="machine-label label-one">
+      <span>GPU</span>
+      <b>{{ section.settings.spec_gpu | default: 'RTX CLASS' }}</b>
+    </div>
+    <div class="machine-label label-two">
+      <span>MEMORY</span>
+      <b>{{ section.settings.spec_ram | default: '64GB DDR5' }}</b>
+    </div>
+  </div>
+
+  <div class="hero-specs">
+    <div>
+      <span>SYSTEM PROFILE</span>
+      <b>{{ section.settings.spec_profile | default: 'CREATOR / AI / ESPORTS' }}</b>
+    </div>
+    <div>
+      <span>POWER</span>
+      <b>{{ section.settings.spec_power | default: '850W ATX 3.1' }}</b>
+    </div>
+    <div>
+      <span>STATUS</span>
+      <b class="status-text">● READY TO CONFIGURE</b>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Machine Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "EST. 2024 / HARDWARE ENGINEERING"
+    },
+    {
+      "type": "text",
+      "id": "title_line1",
+      "label": "Heading Line 1",
+      "default": "Build without"
+    },
+    {
+      "type": "text",
+      "id": "title_line2",
+      "label": "Heading Line 2 (Accent)",
+      "default": "the guesswork."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Enthusiast hardware engineered into balanced performance systems. Every component considered. Every constraint visible."
+    },
+    {
+      "type": "text",
+      "id": "btn_primary_text",
+      "label": "Primary Button Text",
+      "default": "BUILD YOUR RIG"
+    },
+    {
+      "type": "text",
+      "id": "btn_secondary_text",
+      "label": "Secondary Button Text",
+      "default": "EXPLORE COMPONENTS"
+    },
+    {
+      "type": "url",
+      "id": "btn_secondary_link",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "spec_gpu",
+      "label": "Graphic Tag 1 (GPU)",
+      "default": "RTX CLASS"
+    },
+    {
+      "type": "text",
+      "id": "spec_ram",
+      "label": "Graphic Tag 2 (RAM)",
+      "default": "64GB DDR5"
+    },
+    {
+      "type": "text",
+      "id": "spec_profile",
+      "label": "System Profile Summary",
+      "default": "CREATOR / AI / ESPORTS"
+    },
+    {
+      "type": "text",
+      "id": "spec_power",
+      "label": "Power Spec",
+      "default": "850W ATX 3.1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Machine Banner"
+    }
+  ]
+}
+{% endschema %}
