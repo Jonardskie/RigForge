@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "⚡ Debug Express Backend Server",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["tsx", "watch", "src/server.ts"],
+      "cwd": "${workspaceFolder}/server",
+      "console": "integratedTerminal",
+      "restart": true,
+      "protocol": "inspector"
+    },
+    {
+      "name": "🌐 Launch Admin Frontend in Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/app-frontend/src"
+    },
+    {
+      "name": "🛒 Debug Next.js Storefront (Node)",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "🚀 Debug Server + Admin App",
+      "configurations": ["⚡ Debug Express Backend Server", "🌐 Launch Admin Frontend in Chrome"]
+    }
+  ]
+}

@@ -2,87 +2,14 @@ import express from 'express';
 import cors from 'cors';
 import * as dotenv from 'dotenv';
 import { db, isDbConnected } from './db/index.js';
-import { stores, components, compatibilityRules, customBuilds, activityLogs } from './db/schema.js';
+import { components, compatibilityRules, customBuilds, activityLogs } from './db/schema.js';
 import { eq, desc } from 'drizzle-orm';
 import { initialComponents, initialRules, initialBuilds, initialActivityLogs, seedDatabase, } from './db/seed.js';
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
-const SHOPIFY_API_KEY = process.env.SHOPIFY_API_KEY || 'demo_rigforge_api_key';
-const SHOPIFY_API_SECRET = process.env.SHOPIFY_API_SECRET || 'demo_rigforge_api_secret';
-const SCOPES = 'read_products,write_products,read_orders,write_orders,read_inventory,write_inventory';
-const APP_URL = process.env.APP_URL || 'http://localhost:5173';
 app.use(cors({ origin: '*' }));
 app.use(express.json());
-// In-Memory Store Registry
-let memStores = [
-    {
-        id: 'store_rigforge_prod_01',
-        shopDomain: 'rigforge-custom-pc.myshopify.com',
-        accessToken: 'shpat_98a72b64d1f24e93018c',
-        installedAt: new Date('2026-09-16T00:00:00Z'),
-    },
-];
-// ----------------------------------------------------
-// 0. Shopify OAuth & Embedded App Authentication
-// ----------------------------------------------------
-app.get('/api/auth', (req, res) => {
-    const shop = req.query.shop || 'rigforge-custom-pc.myshopify.com';
-    const state = `nonce_${Date.now()}`;
-    const redirectUri = encodeURIComponent(`http://localhost:${PORT}/api/auth/callback`);
-    // Construct Shopify OAuth Authorization URL
-    const authUrl = `https://${shop}/admin/oauth/authorize?client_id=${SHOPIFY_API_KEY}&scope=${SCOPES}&redirect_uri=${redirectUri}&state=${state}`;
-    res.redirect(authUrl);
-});
-app.get('/api/auth/callback', async (req, res) => {
-    try {
-        const { shop, code, state } = req.query;
-        const shopDomain = shop || 'rigforge-custom-pc.myshopify.com';
-        const accessToken = `shpat_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
-        const storeRecord = {
-            id: `store_${Date.now()}`,
-            shopDomain,
-            accessToken,
-            installedAt: new Date(),
-        };
-        // 1. Persist to MySQL via Drizzle ORM
-        if (db && isDbConnected) {
-            try {
-                await db.insert(stores).values(storeRecord);
-            }
-            catch (err) {
-                console.warn('MySQL store insert fallback', err);
-            }
-        }
-        // 2. Persist to memory
-        memStores.push(storeRecord);
-        // 3. Write audit log
-        memLogs.unshift({
-            id: `log-${Date.now()}`,
-            storeId: storeRecord.id,
-            actionType: 'BUILD_VERIFIED',
-            entityType: 'SYSTEM',
-            description: `Shopify OAuth: Merchant installed RigForge on ${shopDomain}`,
-            performedBy: 'Shopify OAuth Engine',
-            createdAt: new Date(),
-        });
-        // 4. Redirect into Embedded App
-        res.redirect(`${APP_URL}/?shop=${encodeURIComponent(shopDomain)}&installed=true`);
-    }
-    catch (error) {
-        res.status(500).send(`OAuth Error: ${error.message}`);
-    }
-});
-app.get('/api/auth/session', (req, res) => {
-    const shop = req.query.shop || 'rigforge-custom-pc.myshopify.com';
-    const store = memStores.find((s) => s.shopDomain === shop) || memStores[0];
-    res.json({
-        authenticated: true,
-        store,
-        embeddedAppOrigin: APP_URL,
-        scopes: SCOPES.split(','),
-    });
-});
 // Canonical In-Memory State
 let memComponents = [...initialComponents];
 let memRules = [...initialRules];

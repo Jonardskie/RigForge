@@ -23,31 +23,26 @@ export const DatabaseInspector: React.FC<DatabaseInspectorProps> = ({
     components: {
       name: 'components',
       description: 'Hardware Catalog & Live Inventory Thresholds',
-      columns: ['id (VARCHAR)', 'sku (VARCHAR)', 'name (VARCHAR)', 'category (ENUM)', 'socket (VARCHAR)', 'watts (INT)', 'price (INT)', 'stock_quantity (INT)', 'low_stock_threshold (INT)', 'status (ENUM)'],
       rowCount: components.length,
     },
     custom_builds: {
       name: 'custom_builds',
       description: 'Customer PC Orders & Risk Scoring Manifests',
-      columns: ['id (VARCHAR)', 'order_number (VARCHAR)', 'customer_name (VARCHAR)', 'profile (ENUM)', 'total_watts (INT)', 'recommended_psu (INT)', 'total_price (INT)', 'risk_score (ENUM)', 'status (ENUM)', 'items_json (TEXT)'],
       rowCount: builds.length,
     },
     compatibility_rules: {
       name: 'compatibility_rules',
       description: 'Hardware Constraint Matrix & Safety Rules',
-      columns: ['id (VARCHAR)', 'name (VARCHAR)', 'source_category (ENUM)', 'target_category (ENUM)', 'rule_type (ENUM)', 'severity (ENUM)', 'description (TEXT)', 'is_active (BOOLEAN)'],
       rowCount: rules.length,
     },
     activity_logs: {
       name: 'activity_logs',
       description: 'Immutable Audit Trail & System Actions',
-      columns: ['id (VARCHAR)', 'timestamp (VARCHAR)', 'action_type (ENUM)', 'entity_type (ENUM)', 'description (TEXT)', 'performed_by (VARCHAR)'],
       rowCount: logs.length,
     },
     stores: {
       name: 'stores',
       description: 'Shopify Store Registry & Multi-Tenant Tokens',
-      columns: ['id (VARCHAR)', 'shop_domain (VARCHAR)', 'access_token (TEXT)', 'installed_at (TIMESTAMP)'],
       rowCount: 1,
     },
   };
@@ -59,12 +54,9 @@ export const DatabaseInspector: React.FC<DatabaseInspectorProps> = ({
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
           <div>
             <span className="admin-eyebrow">Drizzle ORM / MySQL Schema Inspector</span>
-            <h2 style={{ fontSize: 20, fontWeight: 700, margin: '4px 0 6px' }}>
+            <h2 style={{ fontSize: 20, fontWeight: 700, margin: '4px 0 0' }}>
               Relational Database Tables & Live Row Inspector
             </h2>
-            <p style={{ color: 'var(--text-sub)', fontSize: 13, maxWidth: 740, lineHeight: 1.5, margin: 0 }}>
-              Direct raw visual representation of the 5 relational tables defined in <code style={{ fontFamily: 'var(--font-mono)', background: 'var(--bg-app)', padding: '2px 6px', borderRadius: 4 }}>server/src/db/schema.ts</code>.
-            </p>
           </div>
 
           <div className="segmented-control">
@@ -99,25 +91,13 @@ export const DatabaseInspector: React.FC<DatabaseInspectorProps> = ({
           </div>
         </header>
 
-        {/* Column Definitions Bar */}
-        <div style={{ padding: '10px 20px', background: 'var(--bg-subtle)', borderBottom: '1px solid var(--border-subtle)', display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-          <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', alignSelf: 'center', marginRight: 4, fontFamily: 'var(--font-mono)' }}>
-            Columns:
-          </span>
-          {tableMetadata[selectedTable].columns.map((col) => (
-            <span key={col} style={{ background: '#FFFFFF', border: '1px solid var(--border-subtle)', padding: '2px 8px', borderRadius: 4, fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--text-main)' }}>
-              {col}
-            </span>
-          ))}
-        </div>
-
         {/* Live Table Rows */}
         <div className="admin-table-wrap">
           {selectedTable === 'components' && (
             <table className="admin-table">
               <thead>
                 <tr>
-                  <th>id (PK)</th>
+                  <th>id</th>
                   <th>sku</th>
                   <th>name</th>
                   <th>category</th>
@@ -152,7 +132,7 @@ export const DatabaseInspector: React.FC<DatabaseInspectorProps> = ({
             <table className="admin-table">
               <thead>
                 <tr>
-                  <th>id (PK)</th>
+                  <th>id</th>
                   <th>order_number</th>
                   <th>customer_name</th>
                   <th>profile</th>
@@ -185,7 +165,7 @@ export const DatabaseInspector: React.FC<DatabaseInspectorProps> = ({
             <table className="admin-table">
               <thead>
                 <tr>
-                  <th>id (PK)</th>
+                  <th>id</th>
                   <th>name</th>
                   <th>source_category</th>
                   <th>target_category</th>
@@ -216,7 +196,7 @@ export const DatabaseInspector: React.FC<DatabaseInspectorProps> = ({
             <table className="admin-table">
               <thead>
                 <tr>
-                  <th>id (PK)</th>
+                  <th>id</th>
                   <th>timestamp</th>
                   <th>action_type</th>
                   <th>entity_type</th>
@@ -243,7 +223,7 @@ export const DatabaseInspector: React.FC<DatabaseInspectorProps> = ({
             <table className="admin-table">
               <thead>
                 <tr>
-                  <th>id (PK)</th>
+                  <th>id</th>
                   <th>shop_domain</th>
                   <th>access_token</th>
                   <th>installed_at</th>

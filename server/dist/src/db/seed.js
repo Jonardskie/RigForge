@@ -2,7 +2,7 @@ import { db, pool } from './index.js';
 import { stores, components, compatibilityRules, customBuilds, activityLogs } from './schema.js';
 export const initialStore = {
     id: 'store-rigforge-01',
-    shopDomain: 'rigforge-customs.myshopify.com',
+    shopDomain: 'rigforge-zh662akf.myshopify.com',
     accessToken: 'shpat_live_rigforge_secure_token_demo',
 };
 export const initialComponents = [

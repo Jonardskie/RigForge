@@ -1,0 +1,62 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "🚀 Run All Services (Full Platform)",
+      "type": "npm",
+      "script": "dev:all",
+      "isBackground": true,
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "🛒 Run Next.js Storefront Prototype",
+      "type": "npm",
+      "script": "dev",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "🖥️ Run App Admin Frontend (Vite)",
+      "type": "npm",
+      "script": "dev:app",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "⚡ Run Express Server Backend",
+      "type": "npm",
+      "script": "dev:server",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "🛍️ Run Shopify Theme Dev",
+      "type": "npm",
+      "script": "theme:dev",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "🌱 DB: Seed Database",
+      "type": "shell",
+      "command": "npm run db:seed",
+      "options": {
+        "cwd": "${workspaceFolder}/server"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "📊 DB: Drizzle Studio",
+      "type": "shell",
+      "command": "npm run db:studio",
+      "options": {
+        "cwd": "${workspaceFolder}/server"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
