@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "🚀 Run All Services (Full Platform)",
+      "label": "🚀 Run All Services (Theme + Admin App + Server)",
       "type": "npm",
       "script": "dev:all",
       "isBackground": true,

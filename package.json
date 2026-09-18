@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "npm run dev:all",
+    "dev:local": "npx concurrently -n \"APP-ADMIN,SERVER\" -c \"magenta,green\" \"npm run dev:app\" \"npm run dev:server\"",
     "dev:theme": "shopify theme dev --store rigforge-zh662akf.myshopify.com --path=theme",
     "dev:app": "npm run dev --prefix app-frontend",
     "dev:server": "npm run dev --prefix server",
