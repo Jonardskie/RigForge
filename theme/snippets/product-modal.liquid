@@ -1,0 +1,77 @@
+<div 
+  id="product-detail-modal" 
+  class="builder-backdrop" 
+  role="dialog" 
+  aria-modal="true" 
+  aria-labelledby="product-modal-title"
+  hidden
+>
+  <section class="builder-panel" style="max-width: 780px;">
+    <header class="builder-header">
+      <div>
+        <span class="eyebrow" id="product-modal-category">GPU / HARDWARE SPEC</span>
+        <h2 id="product-modal-title">RTX 5080 Founders Edition</h2>
+      </div>
+      <button class="icon-button" data-close-product aria-label="Close product specs">&times;</button>
+    </header>
+
+    <div class="product-detail-grid" style="display: grid; grid-template-columns: 240px 1fr; gap: 24px; padding: 24px 0;">
+      <!-- Product Artwork Preview -->
+      <div class="product-art copper" style="width: 100%; height: 260px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; position: relative;">
+        <span id="product-modal-badge" style="position: absolute; top: 12px; left: 12px; font: 10px var(--font-mono); font-weight: 700; color: var(--amber); background: #FFFFFF; padding: 3px 8px; border-radius: var(--radius-pill); border: 1px solid var(--line);">FEATURED</span>
+        <img id="product-modal-img" src="{{ 'NVIDIA GeForce RTX 5080 Founders Edition_no_bg.png' | asset_url }}" alt="Component Image" style="max-height: 180px; max-width: 90%; object-fit: contain;">
+      </div>
+
+      <!-- Specification Details Panel -->
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <div>
+            <span style="font: 11px var(--font-mono); color: var(--text-muted); text-transform: uppercase;">MSRP / ESTIMATED PRICE</span>
+            <div id="product-modal-price" style="font: 26px var(--font-head); font-weight: 700; color: var(--amber); margin-top: 2px;">$1,199.00</div>
+          </div>
+          <span className="status-badge" style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: var(--radius-pill); font: 11px var(--font-mono); font-weight: 700; background: var(--green-surface); color: var(--green); border: 1px solid rgba(5, 150, 105, 0.3);">
+            ● IN STOCK & VERIFIED
+          </span>
+        </div>
+
+        <p id="product-modal-desc" style="color: var(--text-body); font-size: 13.5px; line-height: 1.6; margin: 0;">
+          Precision-engineered hardware optimized for socket balance, memory timings, thermals, and power envelope.
+        </p>
+
+        <div style="background: var(--bg-sunken); padding: 14px 16px; border-radius: var(--radius-md); border: 1px solid var(--line); box-shadow: var(--neu-sunken-sm);">
+          <span class="eyebrow" style="margin-bottom: 8px; font-size: 10px;">TECHNICAL SPECIFICATIONS</span>
+          <table class="spec-table" style="width: 100%; font-size: 12.5px; border-collapse: collapse;">
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--line);">
+                <td style="padding: 6px 0; color: var(--text-muted); font-family: var(--font-mono); font-size: 11px;">POWER DRAW / TDP</td>
+                <td style="padding: 6px 0; text-align: right;"><strong id="product-modal-watts" style="color: var(--text-main); font-family: var(--font-mono);">360W</strong></td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--line);">
+                <td style="padding: 6px 0; color: var(--text-muted); font-family: var(--font-mono); font-size: 11px;">SOCKET / PLATFORM</td>
+                <td style="padding: 6px 0; text-align: right;"><strong id="product-modal-socket" style="color: var(--text-main); font-family: var(--font-mono);">AM5 / PCIE 5.0</strong></td>
+              </tr>
+              <tr>
+                <td style="padding: 6px 0; color: var(--text-muted); font-family: var(--font-mono); font-size: 11px;">KEY PROFILE SPECS</td>
+                <td style="padding: 6px 0; text-align: right;"><strong id="product-modal-specs" style="color: var(--text-main); font-family: var(--font-mono);">16GB GDDR7 · 304MM</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="guardrail" style="padding: 10px 14px; border-radius: var(--radius-sm); font-size: 11px;">
+          <span class="status-dot"></span>
+          <strong>RigForge Guardrail:</strong> Verified for thermal clearance and power draw envelope calculation.
+        </div>
+      </div>
+    </div>
+
+    <footer class="builder-footer" style="padding-top: 16px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center;">
+      <button type="button" class="outline-button" data-close-product>&larr; BACK TO CATALOG</button>
+      <div style="display: flex; gap: 12px;">
+        <button type="button" class="primary-button" id="product-modal-add-rig" style="height: 44px; padding: 0 20px; font-size: 11px;">
+          ADD TO RIG BUILDER +
+        </button>
+      </div>
+    </footer>
+  </section>
+</div>

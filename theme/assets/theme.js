@@ -233,11 +233,108 @@
     }
   }
 
+  // Product Quick-View Spec Modal Controller
+  function initProductModal() {
+    const modal = document.getElementById('product-detail-modal');
+    if (!modal) return;
+
+    const titleEl = document.getElementById('product-modal-title');
+    const categoryEl = document.getElementById('product-modal-category');
+    const priceEl = document.getElementById('product-modal-price');
+    const descEl = document.getElementById('product-modal-desc');
+    const wattsEl = document.getElementById('product-modal-watts');
+    const socketEl = document.getElementById('product-modal-socket');
+    const specsEl = document.getElementById('product-modal-specs');
+    const imgEl = document.getElementById('product-modal-img');
+    const addRigBtn = document.getElementById('product-modal-add-rig');
+
+    let currentCategory = 'GPU';
+    let currentPartId = 'gpu-5080';
+
+    function openProductModal(triggerBtn) {
+      const title = triggerBtn.getAttribute('data-product-title') || 'Hardware Component';
+      const category = triggerBtn.getAttribute('data-product-category') || 'HARDWARE';
+      const price = triggerBtn.getAttribute('data-product-price') || '$0.00';
+      const desc = triggerBtn.getAttribute('data-product-desc') || 'Precision-engineered hardware optimized for socket balance, thermals, and power envelope.';
+      const watts = triggerBtn.getAttribute('data-product-watts') || '150W';
+      const socket = triggerBtn.getAttribute('data-product-socket') || 'GEN 5 / ATX';
+      const specs = triggerBtn.getAttribute('data-product-specs') || 'ENTHUSIAST GRADE';
+      const img = triggerBtn.getAttribute('data-product-image') || '';
+      
+      currentCategory = triggerBtn.getAttribute('data-select-category') || 'GPU';
+      currentPartId = triggerBtn.getAttribute('data-select-id') || '';
+
+      if (titleEl) titleEl.textContent = title;
+      if (categoryEl) categoryEl.textContent = `${category.toUpperCase()} / HARDWARE SPEC`;
+      if (priceEl) priceEl.textContent = price;
+      if (descEl) descEl.textContent = desc;
+      if (wattsEl) wattsEl.textContent = watts;
+      if (socketEl) socketEl.textContent = socket;
+      if (specsEl) specsEl.textContent = specs;
+
+      if (imgEl && img) {
+        if (window.ShopifyThemeAssets && window.ShopifyThemeAssets[img]) {
+          imgEl.src = window.ShopifyThemeAssets[img];
+        } else if (img.startsWith('http') || img.startsWith('/')) {
+          imgEl.src = img;
+        } else {
+          imgEl.src = `/images/${encodeURIComponent(img)}`;
+        }
+      }
+
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProductModal() {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+    }
+
+    // Attach click triggers to all [data-open-product] elements
+    document.querySelectorAll('[data-open-product]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openProductModal(btn);
+      });
+    });
+
+    // Close buttons
+    modal.querySelectorAll('[data-close-product]').forEach((btn) => {
+      btn.addEventListener('click', closeProductModal);
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeProductModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.hidden) closeProductModal();
+    });
+
+    // Add to Rig Action inside modal
+    if (addRigBtn) {
+      addRigBtn.addEventListener('click', () => {
+        closeProductModal();
+        if (window.RigForgeBuilder) {
+          if (currentCategory && currentPartId) {
+            window.RigForgeBuilder.selectPartById(currentCategory, currentPartId);
+          }
+          window.RigForgeBuilder.open();
+        }
+      });
+    }
+
+    window.openProductDetailModal = openProductModal;
+  }
+
   // Auto-init on load
   document.addEventListener('DOMContentLoaded', () => {
     initMobileNav();
     initProfileSelector();
     initCheckoutModal();
     initCartManifest();
+    initProductModal();
   });
 })();
+

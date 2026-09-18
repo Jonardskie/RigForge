@@ -30,9 +30,12 @@
         <strong>Ryzen 9 9950X + RTX 5080 + 64GB DDR5</strong>
       </div>
 
-      <div style="margin-top: auto; display: flex; gap: 10px;">
+      <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px;">
         <button type="button" class="primary-button" data-load-preset="creator" style="width: 100%; min-height: 44px; font-size: 11px;">
           LOAD THIS BUILD <span>↗</span>
+        </button>
+        <button type="button" class="outline-button" data-toggle-rig-specs="creator" style="width: 100%; min-height: 40px; font-size: 11px;">
+          VIEW BUILD COMPONENTS (7) <span>↓</span>
         </button>
       </div>
     </div>
@@ -56,9 +59,12 @@
         <strong>Core i7-14700K + RTX 5080 + 1000W PSU</strong>
       </div>
 
-      <div style="margin-top: auto; display: flex; gap: 10px;">
+      <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px;">
         <button type="button" class="primary-button" data-load-preset="ai" style="width: 100%; min-height: 44px; font-size: 11px;">
           LOAD THIS BUILD <span>↗</span>
+        </button>
+        <button type="button" class="outline-button" data-toggle-rig-specs="ai" style="width: 100%; min-height: 40px; font-size: 11px;">
+          VIEW BUILD COMPONENTS (7) <span>↓</span>
         </button>
       </div>
     </div>
@@ -82,14 +88,193 @@
         <strong>Ryzen 7 7800X3D + RTX 5070 Ti OC</strong>
       </div>
 
-      <div style="margin-top: auto; display: flex; gap: 10px;">
+      <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px;">
         <button type="button" class="primary-button" data-load-preset="esports" style="width: 100%; min-height: 44px; font-size: 11px;">
           LOAD THIS BUILD <span>↗</span>
+        </button>
+        <button type="button" class="outline-button" data-toggle-rig-specs="esports" style="width: 100%; min-height: 40px; font-size: 11px;">
+          VIEW BUILD COMPONENTS (7) <span>↓</span>
         </button>
       </div>
     </div>
   </div>
+
+  <!-- Expandable Rig Component Specs Drawer Down Below -->
+  <div id="rig-specs-drawer" style="display: none; margin-top: 36px; padding: 28px; background: #FFFFFF; border: 1.5px solid var(--amber); border-radius: var(--radius-lg); box-shadow: var(--neu-raised-hover);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line);">
+      <div>
+        <span class="eyebrow" id="rig-drawer-eyebrow">CREATOR STUDIO 4K / CONFIGURED SYSTEM</span>
+        <h3 id="rig-drawer-title" style="font: 22px var(--font-head); font-weight: 700; color: var(--text-main); margin-top: 4px;">7 Configured System Components</h3>
+      </div>
+      <button type="button" class="outline-button" id="btn-hide-rig-drawer" style="min-height: 38px; padding: 0 16px; font-size: 11px;">
+        HIDE COMPONENTS <span>↑</span>
+      </button>
+    </div>
+
+    <div class="product-grid" id="rig-drawer-grid">
+      <!-- Component cards injected via JS dynamically based on active preset -->
+    </div>
+  </div>
 </section>
+
+<script>
+  (function initPerformanceProfilesSection() {
+    function setup() {
+      const presetSpecs = {
+        creator: {
+          title: "Creator Studio 4K Baseline",
+          eyebrow: "01 / CREATOR STUDIO (7 COMPONENTS)",
+          parts: [
+            { name: "Ryzen 9 9950X", category: "CPU", watts: "170W", socket: "AM5", price: "$649", image: "AMD Ryzen 9 9950X_no_bg.png", specs: "16 Cores / 32 Threads · 5.7 GHz Boost", desc: "Flagship Zen 5 desktop processor engineered for heavy multi-threaded video rendering and 3D modeling." },
+            { name: "RTX 5080 Founders Edition", category: "GPU", watts: "360W", socket: "PCIe 5.0 x16", price: "$1,199", image: "NVIDIA GeForce RTX 5080 Founders Edition_no_bg.png", specs: "16GB GDDR7 · 304MM Triple-Slot", desc: "Built on Blackwell architecture with ultra-fast GDDR7 memory." },
+            { name: "X670E AORUS Master", category: "Motherboard", watts: "50W", socket: "AM5 Socket", price: "$429", image: "Gigabyte X670E AORUS Master_no_bg.png", specs: "PCIe 5.0 · DDR5 · 16+2+2 VRM", desc: "Premium AM5 flagship motherboard with robust power delivery." },
+            { name: "64GB DDR5-6000 CL30", category: "RAM", watts: "15W", socket: "DDR5 DIMM", price: "$209", image: "Corsair Vengeance RGB 64 GB (2 x 32 GB) DDR5-6000 CL30 Memory_no_bg.png", specs: "2 × 32GB · EXPO & XMP 3.0 · CL30", desc: "High-performance low-latency DDR5 dual-channel kit." },
+            { name: "Arctic Liquid Freezer III 360", category: "Cooler", watts: "25W", socket: "AM5 / LGA1700", price: "$119", image: "Arctic Liquid Freezer III 360_no_bg.png", specs: "360MM Radiator · VRM Fan", desc: "360mm liquid cooler with extra thick radiator." },
+            { name: "North XL Mesh Charcoal", category: "Case", watts: "CHASSIS", socket: "ATX / E-ATX", price: "$179", image: "Fractal Design North XL Mesh_no_bg.png", specs: "350MM GPU Clearance · Walnut Trim", desc: "Scandinavian chassis featuring real solid walnut front panel." },
+            { name: "RM850x Shift Gold", category: "PSU", watts: "850W", socket: "ATX 3.1", price: "$149", image: "Corsair RM850x Shift_no_bg.png", specs: "850W · 80+ Gold · ATX 3.1", desc: "Side-positioned modular interface power supply." }
+          ]
+        },
+        ai: {
+          title: "AI & Deep Learning Pro Baseline",
+          eyebrow: "02 / AI & DEEP LEARNING (7 COMPONENTS)",
+          parts: [
+            { name: "Core i7-14700K", category: "CPU", watts: "253W", socket: "LGA1700", price: "$399", image: "Intel Core i7-14700K_no_bg.png", specs: "20 Cores (8P + 12E) · 5.6 GHz Boost", desc: "Hybrid architecture processor delivering high clock speeds." },
+            { name: "RTX 5080 Founders Edition", category: "GPU", watts: "360W", socket: "PCIe 5.0 x16", price: "$1,199", image: "NVIDIA GeForce RTX 5080 Founders Edition_no_bg.png", specs: "16GB GDDR7 · CUDA Acceleration", desc: "Blackwell architecture with 16GB GDDR7 memory for local LLM inference." },
+            { name: "Z790 Maximus Hero", category: "Motherboard", watts: "55W", socket: "LGA1700 Socket", price: "$549", image: "ASUS ROG Maximus Z790 Hero_no_bg.png", specs: "PCIe 5.0 · DDR5 7800+ · Thunderbolt 4", desc: "Elite Z790 motherboard designed for extreme Intel 14th gen stability." },
+            { name: "64GB DDR5-6000 CL30", category: "RAM", watts: "15W", socket: "DDR5 DIMM", price: "$209", image: "Corsair Vengeance RGB 64 GB (2 x 32 GB) DDR5-6000 CL30 Memory_no_bg.png", specs: "2 × 32GB · EXPO & XMP 3.0 · CL30", desc: "Dual-channel high-speed DDR5 memory kit." },
+            { name: "Arctic Liquid Freezer III 360", category: "Cooler", watts: "25W", socket: "LGA1700", price: "$119", image: "Arctic Liquid Freezer III 360_no_bg.png", specs: "360MM Radiator · VRM Fan", desc: "Heavy-duty 360mm AIO for thermal stability under sustained load." },
+            { name: "Lian Li O11 Vision Black", category: "Case", watts: "CHASSIS", socket: "E-ATX / ATX", price: "$139", image: "Lian Li O11 Vision_no_bg.png", specs: "455MM GPU Clearance · 3-Sided Glass", desc: "Showcase chassis with three-sided tempered glass panels." },
+            { name: "Vertex GX-1000 ATX 3.0", category: "PSU", watts: "1000W", socket: "ATX 3.0", price: "$199", image: "Seasonic Vertex GX-1000_no_bg.png", specs: "1000W · 80+ Gold · Native 12VHPWR", desc: "1000W power supply engineered for heavy GPU AI workloads." }
+          ]
+        },
+        esports: {
+          title: "Esports Pro 240Hz+ Baseline",
+          eyebrow: "03 / ESPORTS PRO (7 COMPONENTS)",
+          parts: [
+            { name: "Ryzen 7 7800X3D", category: "CPU", watts: "120W", socket: "AM5", price: "$389", image: "AMD Ryzen 7 7800X3D_no_bg.png", specs: "8 Cores / 16 Threads · 3D V-Cache", desc: "3D V-Cache technology for ultra-low latency in competitive gaming." },
+            { name: "RTX 5070 Ti OC Edition", category: "GPU", watts: "285W", socket: "PCIe 5.0 x16", price: "$749", image: "GeForce RTX 5070 Ti OC Edition_no_bg.png", specs: "16GB GDDR7 · 305MM Triple-Fan", desc: "Factory overclocked GPU for ultra-high FPS 1440p gaming." },
+            { name: "B650E Steel Legend", category: "Motherboard", watts: "40W", socket: "AM5 Socket", price: "$239", image: "ASRock B650E Steel Legend_no_bg.png", specs: "PCIe 5.0 GPU · DDR5 EXPO · ATX", desc: "High-value B650E motherboard with reinforced armor heatsinks." },
+            { name: "32GB DDR5-6000 CL30", category: "RAM", watts: "10W", socket: "DDR5 DIMM", price: "$119", image: "Kingston FURY Beast 32 GB (2 x 16 GB) DDR5-6000 CL30 Memory_no_bg.png", specs: "2 × 16GB · EXPO & XMP 3.0 · CL30", desc: "Low-profile DDR5 memory kit with tight CL30 timings." },
+            { name: "DeepCool AK620 Digital", category: "Cooler", watts: "10W", socket: "AM5 / LGA1700", price: "$79", image: "DeepCool AK620 Digital_no_bg.png", specs: "Dual Tower · 160MM Height · Display", desc: "Dual tower air cooler with real-time temperature readout screen." },
+            { name: "Lian Li Vector V100R ATX", category: "Case", watts: "CHASSIS", socket: "ATX / Micro-ATX", price: "$119", image: "Lian Li Vector V100R ATX Mid Tower Case_no_bg.png", specs: "380MM GPU Clearance · High Airflow", desc: "Mid-tower case built for clean airflow and cable routing." },
+            { name: "RM850x Shift Gold", category: "PSU", watts: "850W", socket: "ATX 3.1", price: "$149", image: "Corsair RM850x Shift_no_bg.png", specs: "850W · 80+ Gold · ATX 3.1", desc: "850W Gold certified power supply with side modular interface." }
+          ]
+        }
+      };
+
+      const drawer = document.getElementById('rig-specs-drawer');
+      const drawerEyebrow = document.getElementById('rig-drawer-eyebrow');
+      const drawerTitle = document.getElementById('rig-drawer-title');
+      const drawerGrid = document.getElementById('rig-drawer-grid');
+      const hideBtn = document.getElementById('btn-hide-rig-drawer');
+      let activeRigKey = null;
+
+      function renderRigDrawer(key) {
+        const rig = presetSpecs[key];
+        if (!rig || !drawerGrid) return;
+
+        if (drawerEyebrow) drawerEyebrow.textContent = rig.eyebrow;
+        if (drawerTitle) drawerTitle.textContent = `${rig.title} — Included Components`;
+
+        const getAssetUrl = (fileName) => {
+          if (window.ShopifyThemeAssets && window.ShopifyThemeAssets[fileName]) {
+            return window.ShopifyThemeAssets[fileName];
+          }
+          return `/images/${encodeURIComponent(fileName)}`;
+        };
+
+        drawerGrid.innerHTML = rig.parts.map(part => `
+          <article class="product-card">
+            <div class="product-art copper">
+              <span>${part.category.toUpperCase()}</span>
+              <img src="${getAssetUrl(part.image)}" alt="${part.name}" class="product-card-real-img" width="400" height="300" loading="lazy" style="max-height: 140px; max-width: 85%; object-fit: contain;">
+            </div>
+            <div class="product-info">
+              <div>
+                <span class="eyebrow">${part.category.toUpperCase()} / CONFIGURED</span>
+                <h3>${part.name}</h3>
+              </div>
+              <strong>${part.price}</strong>
+            </div>
+            <div class="product-specs">
+              <span>${part.watts}</span>
+              <span>${part.socket}</span>
+            </div>
+            <div class="product-card-footer">
+              <button type="button" class="product-card-link-btn" 
+                data-open-product 
+                data-product-title="${part.name}" 
+                data-product-category="${part.category}" 
+                data-product-price="${part.price}" 
+                data-product-watts="${part.watts}" 
+                data-product-socket="${part.socket}" 
+                data-product-specs="${part.specs}" 
+                data-product-desc="${part.desc}" 
+                data-product-image="${part.image}"
+              >
+                SEE MORE <span>↗</span>
+              </button>
+              <button type="button" class="text-button" data-open-builder style="color: var(--amber)">ADD TO RIG +</button>
+            </div>
+          </article>
+        `).join('');
+
+        if (window.openProductDetailModal) {
+          drawerGrid.querySelectorAll('[data-open-product]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              e.preventDefault();
+              window.openProductDetailModal(btn);
+            });
+          });
+        }
+      }
+
+      document.querySelectorAll('[data-toggle-rig-specs]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const key = btn.getAttribute('data-toggle-rig-specs');
+          
+          if (drawer.style.display === 'none' || activeRigKey !== key) {
+            activeRigKey = key;
+            renderRigDrawer(key);
+            drawer.style.display = 'block';
+            drawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            
+            document.querySelectorAll('[data-toggle-rig-specs]').forEach(b => {
+              const bKey = b.getAttribute('data-toggle-rig-specs');
+              if (bKey === key) {
+                b.innerHTML = 'HIDE BUILD COMPONENTS <span>↑</span>';
+              } else {
+                b.innerHTML = 'VIEW BUILD COMPONENTS (7) <span>↓</span>';
+              }
+            });
+          } else {
+            drawer.style.display = 'none';
+            activeRigKey = null;
+            btn.innerHTML = 'VIEW BUILD COMPONENTS (7) <span>↓</span>';
+          }
+        });
+      });
+
+      if (hideBtn) {
+        hideBtn.addEventListener('click', () => {
+          drawer.style.display = 'none';
+          activeRigKey = null;
+          document.querySelectorAll('[data-toggle-rig-specs]').forEach(b => {
+            b.innerHTML = 'VIEW BUILD COMPONENTS (7) <span>↓</span>';
+          });
+        });
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setup);
+    } else {
+      setup();
+    }
+  })();
+</script>
 
 {% schema %}
 {

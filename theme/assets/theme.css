@@ -772,14 +772,23 @@ a {
   align-items: center;
 }
 
-.product-card-footer a {
+.product-card-footer a,
+.product-card-link-btn {
   font: 11px var(--font-mono);
   font-weight: 600;
   color: var(--text-muted);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   transition: color 0.2s;
 }
 
-.product-card-footer a:hover {
+.product-card-footer a:hover,
+.product-card-link-btn:hover {
   color: var(--text-main);
 }
 

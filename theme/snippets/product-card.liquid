@@ -10,7 +10,11 @@
 <article class="product-card">
   <div class="product-art {{ card_tone }}">
     <span>{{ product.type | default: 'HARDWARE' | upcase }}</span>
-    <div class="product-shape"></div>
+    {%- if product.featured_image != blank -%}
+      <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title | escape }}" class="product-card-real-img" width="400" height="300" loading="lazy" style="max-height: 150px; max-width: 85%; object-fit: contain;">
+    {%- else -%}
+      <div class="product-shape"></div>
+    {%- endif -%}
   </div>
   
   <div class="product-info">
@@ -31,7 +35,19 @@
   </div>
 
   <div class="product-card-footer">
-    <a href="{{ product.url }}">VIEW PRODUCT <span>↗</span></a>
+    <button type="button" class="product-card-link-btn" 
+      data-open-product 
+      data-product-title="{{ product.title | escape }}" 
+      data-product-category="{{ product.type | default: 'HARDWARE' | escape }}" 
+      data-product-price="{{ product.price | money }}" 
+      data-product-watts="VERIFIED" 
+      data-product-socket="HARDWARE PLATFORM" 
+      data-product-specs="{% for tag in product.tags limit: 3 %}{{ tag }}{% unless forloop.last %} · {% endunless %}{% else %}ENTHUSIAST GRADE · GEN 5{% endfor %}" 
+      data-product-desc="{{ product.description | strip_html | escape | default: 'Precision-engineered hardware optimized for socket balance, memory timings, thermals, and power envelope.' }}" 
+      data-product-image="{% if product.featured_image %}{{ product.featured_image | image_url: width: 600 }}{% endif %}"
+    >
+      SEE MORE <span>↗</span>
+    </button>
     <button type="button" class="text-button" data-open-builder style="color: var(--amber)">ADD TO RIG +</button>
   </div>
 </article>
